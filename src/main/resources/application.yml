@@ -9,8 +9,6 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
 
-
-
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
   type-aliases-package: com.example.quertz.entity
@@ -18,3 +16,7 @@ mybatis-plus:
   #在控制台打印sql
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#log4j2默认日志文件名为log4j2.xml ，如需更改名称请在此处配置
+logging:
+  config: classpath:log4j2.xml

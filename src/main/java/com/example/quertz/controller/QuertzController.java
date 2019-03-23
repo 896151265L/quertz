@@ -1,8 +1,10 @@
 package com.example.quertz.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.quertz.entity.Quertz;
 import com.example.quertz.quertz.trigger.MyScheduler;
 import com.example.quertz.service.IQuertzService;
+import lombok.extern.slf4j.Slf4j;
 import org.quartz.CronExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +20,11 @@ import java.util.List;
  * @Date: 2019/3/19 14:48
  * @Version: 1.0
  */
+@Slf4j
 @RestController
 @RequestMapping("quertz")
 public class QuertzController {
+
 
     private static final Integer TASK_STATUS_STOP = 0;    //任务状态 停止
     private static final Integer TASK_STATUS_STARTR = 1;  //任务状态 正常执行
@@ -44,6 +48,9 @@ public class QuertzController {
         if(null!=quertzServiceImpl.getOneQuertz(quertz.getJobName(),quertz.getJobGroup())){
             return "任务已存在";
         }
+
+        log.info(String.format("[quertz parme:] %s",JSON.toJSONString(quertz)));
+
         quertzServiceImpl.addJob(quertz);  //数据库中保存任务
         myScheduler.startJob(quertz);     //开启这个任务
         return "success";

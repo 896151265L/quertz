@@ -26,7 +26,7 @@ public class Quertz implements Serializable {
     private String clazz;                                           //任务实现类
     private String taskDescription;                                 //任务描述
     private Integer taskStatus = 0;                                 //任务状态 1：启用 0：禁用  (默认为：0)
-    private LocalDateTime taskCreateTime = LocalDateTime.now();     //任务创建时间(默认为创建时间)
+    private LocalDateTime taskCreateTime = LocalDateTime.now();     //任务创建时间(默认为当前系统时间)
     private String triggerName;                                     //触发器名称
     private String triggerGroup;                                    //触发器分组
 
